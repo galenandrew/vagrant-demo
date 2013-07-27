@@ -23,7 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  # config.vm.network :private_network, ip: "192.168.33.10"
+  config.vm.network :private_network, ip: "192.168.33.10"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -56,7 +56,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # information on available options.
 
   # Run inline provision to update box
-  config.vm.provision :shell, :inline => "apt-get update"
+  # config.vm.provision :shell, :inline => "apt-get update"
 
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
@@ -77,13 +77,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # # }
   # 
   # BASIC - one line setup (looks for `manifests/default.pp`)
-  config.vm.provision :puppet
+  # config.vm.provision :puppet
   # 
   # ADVANCED - allows for custom setup
-  # config.vm.provision :puppet do |p|
-  #   p.manifests_path = "manifests"
-  #   p.manifest_file  = "init.pp"
-  # end
+  config.vm.provision :puppet do |p|
+    p.manifests_path = "manifests"
+    p.manifest_file  = "init.pp"
+  end
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
   # path, and data_bags path (all relative to this Vagrantfile), and adding
